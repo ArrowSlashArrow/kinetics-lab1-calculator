@@ -22,6 +22,7 @@ def process_data(df):
     abs_col = df["absorptivity"]
     concs = [x / (a * b) for x in abs_col]
 
+    # what order is the rxn with respect to red40
     most_linear = -1
     most_linear_r2 = 0
     slope = 0
@@ -65,6 +66,7 @@ def process_data(df):
     k = kprime / bleach_const
     st.markdown(f"From the graph, we can determine that k' = {kprime:.3f}. We can derive that $k = \\frac{{k'}}{{[bleach]^m_0}} = \\frac{{{kprime:.3f}}}{{{bleach_const}}} = {k}$. Our final answers:")
     st.latex(f"k = {k:.4f}")
+    st.latex(f"r = {k:.4f}\\cdot[bleach]^{bleach_order}[red40]^{most_linear}")
 
 def main():
     global bleach_order, bleach_conc0
